@@ -227,7 +227,6 @@ EOT
      * @param  boolean $err
      * @param  string $msg Will receive error or success message
      *
-     * @return array
      * @access protected
      */
     protected function displayResponse(OutputInterface $output, $err, $msg) {
