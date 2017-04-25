@@ -127,7 +127,9 @@ EOT
      */
     protected function composerProcess($composerJsonFile, $moduleName) {
         $err = false;
-
+        
+        $moduleName = ucfirst(strtolower($modName));
+        
         if (file_exists($composerJsonFile)) {
             $composerJsonData = json_decode(file_get_contents($composerJsonFile), true);
             if (array_key_exists($moduleName . '\\', $composerJsonData['autoload']['psr-4'])) {
@@ -184,6 +186,7 @@ EOT
             shell_exec('cd ' . $path . '/module/' . $moduleName . ';grep -rl \'SkeletonController\' ./ | xargs sed -i \'s/SkeletonController/' . $moduleName . 'Controller/g\'');
 
             //Rename within files with lower case
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ';grep -rl \'Literal\' ./ | xargs sed -i \'s/Literal/Segment/g\'');
             shell_exec('cd ' . $path . '/module/' . $moduleName . ';grep -rl \'module-name-here\' ./ | xargs sed -i \'s/module-name-here/' . strtolower($moduleName) . '/g\'');
             shell_exec('cd ' . $path . '/module/' . $moduleName . ';grep -rl \'module-specific-root\' ./ | xargs sed -i \'s/module-specific-root/' . strtolower($moduleName) . '\[\/\:action\]\[\/\]\[\:id\]/g\'');
         } else {
