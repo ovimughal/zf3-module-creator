@@ -1,5 +1,27 @@
 {
+    "name": "ovimughal/zf3-module-creator",
+    "description": "",
+    "license": "MIT",
+    "type": "tool",
+    "keywords": [
+        "zf3 Module",
+        "Zend framework 3 Module",
+        "Module Creator"
+    ],
+    "homepage": "https://github.com/ovimughal/zf3-module-creator",
+    "authors": [
+        {
+            "name": "Owais Mughal",
+            "email": "ovi.mughal@gmail.com"
+        }
+    ],
     "require": {
+        "php": ">=5.5.9",
         "symfony/console": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Commands\\": "src/Commands"
+        }
     }
 }
