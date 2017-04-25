@@ -38,8 +38,11 @@ set_time_limit(0);
 date_default_timezone_set('Asia/calcutta'); 
 
 // include the composer autoloader
-require_once __DIR__ . '/../vendor/autoload.php'; 
+//This works when standalone vendor is in app
+//require_once __DIR__ . '/../vendor/autoload.php'; 
 
+//This is for use as acomposer package
+require_once __DIR__ . '/../../../autoload.php';
 // import the Symfony Console Application 
 
 use Commands\ZF3ModuleCommand;
