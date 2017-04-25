@@ -128,7 +128,7 @@ EOT
     protected function composerProcess($composerJsonFile, $moduleName) {
         $err = false;
         
-        $moduleName = ucfirst(strtolower($modName));
+        $moduleName = ucfirst(strtolower($moduleName));
         
         if (file_exists($composerJsonFile)) {
             $composerJsonData = json_decode(file_get_contents($composerJsonFile), true);
