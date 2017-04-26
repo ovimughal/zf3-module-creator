@@ -125,10 +125,10 @@ EOT
      * @return array
      * @access protected
      */
-    protected function composerProcess($composerJsonFile, $moduleName) {
+    protected function composerProcess($composerJsonFile, $modName) {
         $err = false;
         
-        $moduleName = ucfirst(strtolower($moduleName));
+        $moduleName = ucfirst(strtolower($modName));
         
         if (file_exists($composerJsonFile)) {
             $composerJsonData = json_decode(file_get_contents($composerJsonFile), true);
@@ -209,7 +209,9 @@ EOT
      *
      * @access protected
      */
-    protected function loadModule($moduleConfigFile, $moduleName) {
+    protected function loadModule($moduleConfigFile, $modName) {
+        $moduleName = ucfirst(strtolower($modName));
+        
         $loadedModules = require ($moduleConfigFile);
         $loadedModules[] = $moduleName;
 
