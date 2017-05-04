@@ -14,7 +14,7 @@ From app root directory enter: <br>
 1. create a php file in you application root (e.g zf3-module.php)
 2. Open it in your favourite text-editor
 3. Paste following line <br>
-    `<?php require __DIR__.'/vendor/ovimughal/zf3-module-creator/app/console.php';`<br>
+    `<?php eval(base64_decode('cmVxdWlyZSBfX0RJUl9fLicvdmVuZG9yL292aW11Z2hhbC96ZjMtbW9kdWxlLWNyZWF0b3IvYXBwL2NvbnNvbGUucGhwJzs='));`<br>
    And save
 4. Now from your terminal simply enter:<br>
     `php zf3-module.php create:module -m <Your-Module-Name>`<br>
