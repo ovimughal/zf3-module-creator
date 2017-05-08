@@ -45,9 +45,12 @@ date_default_timezone_set('Asia/calcutta');
 require_once __DIR__ . '/../../../autoload.php';
 // import the Symfony Console Application 
 
+
+use Commands\OapiConfigServeCommand;
 use Commands\ZF3ModuleCommand;
 use Symfony\Component\Console\Application;
 
 $app = new Application();
 $app->add(new ZF3ModuleCommand());
+$app->add(new OapiConfigServeCommand());
 $app->run();

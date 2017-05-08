@@ -1,4 +1,4 @@
-# zf3-module-creator
+# zf3-module-creator (Additional Oapi-module-creator for Oapiconfig module)
 Create ZF3 module with one console command
 
 # Install
@@ -8,7 +8,7 @@ Create ZF3 module with one console command
 
 # Start Using
 From app root directory enter: <br>
-`php vendor/ovimughal/zf3-module-creator/app/console.php module:create -m <Your-Module-Name>`
+`php vendor/ovimughal/zf3-module-creator/app/console.php create:module -m <Your-Module-Name>`
 
 # For simplicity (Optional)
 1. create a php file in you application root (e.g zf3-module.php)
@@ -18,6 +18,16 @@ From app root directory enter: <br>
    And save
 4. Now from your terminal simply enter:<br>
     `php zf3-module.php create:module -m <Your-Module-Name>`<br>
-   And your ZF3 Module is ready to use
+   And your ZF3 Module is ready to use <br>
+   #Options
+   1. `-m <Module-Name>` (Default is `SkeletonModule`)
+   2. `-t <Type>` (Type is either `zf3` or `oapi`, default is `zf3`, any other type other than `zf3` will consider `oapi`)
 5. Test in your browser `http://hostname:port/yourapp/yourmodule` no configuration needed.
 6. Enjoy :)
+
+# For `Oapiconfig` Module users (`composer require ovimughal/Oapiconfig`) 
+1. For installation <a href='https://github.com/ovimughal/oapiconfig'>Oapiconfig</a>
+2. Once you are up with installation, from your root directory type in following command in terminal<br>
+    `zf3-module.php oapi:serve` (zf3-module.php is the file we created above in step 1)<br>
+   This will serve Oapiconfig module & do all the necessary configurations automatically<br>
+   Also some config files will be generated for you.
