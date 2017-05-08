@@ -25,7 +25,7 @@ From app root directory enter: <br>
 5. Test in your browser `http://hostname:port/yourapp/yourmodule` no configuration needed.
 6. Enjoy :)
 
-# For `Oapiconfig` Module users (`composer require ovimughal/Oapiconfig`) 
+# For `Oapiconfig` Module users
 1. For installation <a href='https://github.com/ovimughal/oapiconfig'>Oapiconfig</a>
 2. Once you are up with installation, from your root directory type in following command in terminal<br>
     `zf3-module.php oapi:serve` (zf3-module.php is the file we created above in step 1)<br>
