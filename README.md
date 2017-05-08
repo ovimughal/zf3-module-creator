@@ -31,3 +31,18 @@ From app root directory enter: <br>
     `zf3-module.php oapi:serve` (zf3-module.php is the file we created above in step 1)<br>
    This will serve Oapiconfig module & do all the necessary configurations automatically<br>
    Also some config files will be generated for you.
+3. For `doctrine` to work properly we need to tell it the location of Entities<br>
+   Paste following in any `module\<module-name>\config\module.config.php` return array
+   `'driver' => [
+            __NAMESPACE__ . '_driver' => [
+                'class' => AnnotationDriver::class,
+                'cache' => 'array',
+                'paths' => [__DIR__ . '/../src/Entity']
+            ],
+            'orm_default' => [
+                'drivers' => [
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                ],
+            ],
+        ],`
+4. You are Done :)
