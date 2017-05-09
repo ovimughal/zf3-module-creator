@@ -32,8 +32,9 @@ From app root directory enter: <br>
    This will serve Oapiconfig module & do all the necessary configurations automatically<br>
    Also some config files will be generated for you.
 3. For `doctrine` to work properly we need to tell it the location of Entities<br>
-   Paste following in any `module\<module-name>\config\module.config.php` return array
-   `'driver' => [
+   Paste following in any `module\<module-name>\config\module.config.php` return array <br>
+```php   
+'driver' => [
             __NAMESPACE__ . '_driver' => [
                 'class' => AnnotationDriver::class,
                 'cache' => 'array',
@@ -44,5 +45,5 @@ From app root directory enter: <br>
                     __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
                 ],
             ],
-        ],`
+        ],
 4. You are Done :)
