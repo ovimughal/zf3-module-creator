@@ -3,21 +3,35 @@ Create ZF3 module with one console command
 
 # Install
 1. Open terminal
-2. `cd /path/of/your/application` (e.g `cd /var/www/ZF3-App`)
-3. `composer require ovimughal/zf3-module-creator`
+2. 
+```bash
+cd /path/of/your/application
+```
+(e.g `cd /var/www/ZF3-App`)
+3. 
+```bash
+composer require ovimughal/zf3-module-creator
+```
 
 # Start Using
 From app root directory enter: <br>
-`php vendor/ovimughal/zf3-module-creator/app/console.php create:module -m <Your-Module-Name>`
+```bash
+php vendor/ovimughal/zf3-module-creator/app/console.php create:module -m <Your-Module-Name>
+```
 
 # For simplicity (Optional)
 1. create a php file in you application root (e.g zf3-module.php)
 2. Open it in your favourite text-editor
-3. Paste following line <br>
-    `<?php eval(base64_decode('cmVxdWlyZSBfX0RJUl9fLicvdmVuZG9yL292aW11Z2hhbC96ZjMtbW9kdWxlLWNyZWF0b3IvYXBwL2NvbnNvbGUucGhwJzs='));`<br>
+3. Paste following line
+```php
+<?php
+eval(base64_decode('cmVxdWlyZSBfX0RJUl9fLicvdmVuZG9yL292aW11Z2hhbC96ZjMtbW9kdWxlLWNyZWF0b3IvYXBwL2NvbnNvbGUucGhwJzs='));
+```
    And save
-4. Now from your terminal simply enter:<br>
-    `php zf3-module.php create:module -m <Your-Module-Name>`<br>
+4. Now from your terminal simply enter:
+```bash
+php zf3-module.php create:module -m <Your-Module-Name>
+```
    And your ZF3 Module is ready to use <br>
    #Options
    1. `-m <Module-Name>` (Default is `SkeletonModule`)
@@ -32,7 +46,7 @@ From app root directory enter: <br>
    This will serve Oapiconfig module & do all the necessary configurations automatically<br>
    Also some config files will be generated for you.
 3. For `doctrine` to work properly we need to tell it the location of Entities<br>
-   Paste following in any `module\<module-name>\config\module.config.php` return array <br>
+   Paste following in any `module\<module-name>\config\module.config.php` return array
 ```php   
 'driver' => [
             __NAMESPACE__ . '_driver' => [
