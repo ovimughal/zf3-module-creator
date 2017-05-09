@@ -46,4 +46,6 @@ From app root directory enter: <br>
                 ],
             ],
         ],
+```
+
 4. You are Done :)
