@@ -47,19 +47,21 @@ php zf3-module.php create:module -m <Your-Module-Name>
    Also some config files will be generated for you.
 3. For `doctrine` to work properly we need to tell it the location of Entities<br>
    Paste following in any `module\<module-name>\config\module.config.php` return array
-```php   
-'driver' => [
-            __NAMESPACE__ . '_driver' => [
-                'class' => AnnotationDriver::class,
-                'cache' => 'array',
-                'paths' => [__DIR__ . '/../src/Entity']
-            ],
-            'orm_default' => [
-                'drivers' => [
-                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
-                ],
+```php  
+'doctrine' => [ 
+    'driver' => [
+        __NAMESPACE__ . '_driver' => [
+            'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
+            'cache' => 'array',
+            'paths' => [__DIR__ . '/../src/Entity']
+        ],
+        'orm_default' => [
+            'drivers' => [
+                __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
             ],
         ],
+    ],
+],
 ```
 
 4. You are Done :)
