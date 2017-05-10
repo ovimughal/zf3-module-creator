@@ -22,9 +22,9 @@ class RestmodHandler extends OhandlerBaseProvider
     public function getHandle($id)
     {
         if(OvalidationSniffer::isNumeric($id)){
-            $oapirestmodModel = new OapirestmodModel();
-            $resultOapirestmodDetails = $oapirestmodModel->getOapirestmodDetails($id);
-            $this->setData(OexceptionSniffer::exceptionScanner($resultOapirestmodDetails));
+            $restmodModel = new OapirestmodModel();
+            $resultRestmodDetails = $restmodModel->getRestmodDetails($id);
+            $this->setData(OexceptionSniffer::exceptionScanner($resultRestmodDetails));
         }
         
         return $this->getResult();

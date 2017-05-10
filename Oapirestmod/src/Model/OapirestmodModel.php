@@ -18,7 +18,7 @@ use Oapiconfig\DI\ServiceInjector;
 class OapirestmodModel extends OmodelBaseProvider
 {
 
-    public function getOapirestmodDetails($id)
+    public function getRestmodDetails($id)
     {
         $dql = 'Write your query';
 
