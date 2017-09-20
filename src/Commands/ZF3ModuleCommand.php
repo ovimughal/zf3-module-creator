@@ -90,7 +90,12 @@ EOT
         $modName = $input->getOption('moduleName');
         $moduleType = $input->getOption('moduleType');
         
-        $path = shell_exec("pwd | tr -d '\n'");
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+			$pathWin = shell_exec("pwd | tr -d '\n\n\n'");
+			$path = str_replace('/c','C:',trim(preg_replace('/\s\s+/', ' ', $pathWin)));
+		} else {
+			$path = shell_exec("pwd | tr -d '\n'");
+		}
 
         $project = $path;
         $composerJsonFile = $project . '/composer.json';
@@ -112,7 +117,7 @@ EOT
                 $this->loadModule($moduleConfigFile, $moduleName);
                 //in case shell_exec fails composer file shouldn't be updated
                 file_put_contents($composerJsonFile, json_encode($composerJsonData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
-                shell_exec('cd ' . $path . ';composer dump-autoload');
+                shell_exec('cd ' . $path . ' && composer dump-autoload');
             }
         }
 
@@ -202,33 +207,33 @@ EOT
         if (is_dir($path . '/module')) {
 
             if ($this->checkConnection()) {
-                shell_exec('cd ' . $path . '/module;git clone https://github.com/zendframework/ZendSkeletonModule ' . $moduleName . ';cd ' . $moduleName . ';rm -Rf .git .gitignore;git remote remove origin;');
+                shell_exec('cd ' . $path . '/module && git clone https://github.com/zendframework/ZendSkeletonModule ' . $moduleName . ' && cd ' . $moduleName . ' && rm -Rf .git .gitignore && git remote remove origin');
             } else {
                 shell_exec(
-                        'cd vendor/ovimughal/zf3-module-creator;'
-                        . 'cp -R ZendSkeletonModule ' . $path . '/module/'.$moduleName.';'
+                        'cd vendor/ovimughal/zf3-module-creator && '
+                        . 'cp -R ZendSkeletonModule ' . $path . '/module/'.$moduleName
                 );
             }
 
             //Rename all directories with upper name
-            shell_exec('cd ' . $path . '/module/' . $moduleName . ';find . -depth -name ZendSkeletonModule -type d -execdir mv {} ' . $moduleName . ' \;');
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ' && find . -depth -name ZendSkeletonModule -type d -execdir mv {} ' . $moduleName . ' \;');
 
             //Rename all directories with lower case
-            shell_exec('cd ' . $path . '/module/' . $moduleName . ';find . -depth -name zend-skeleton-module -type d -execdir mv {} ' . strtolower($moduleName) . ' \;');
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ' && find . -depth -name zend-skeleton-module -type d -execdir mv {} ' . strtolower($moduleName) . ' \;');
 
-            shell_exec('cd ' . $path . '/module/' . $moduleName . ';find . -depth -name skeleton -type d -execdir mv {} ' . strtolower($moduleName) . ' \;');
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ' && find . -depth -name skeleton -type d -execdir mv {} ' . strtolower($moduleName) . ' \;');
 
             //Rename all files
-            shell_exec('cd ' . $path . '/module/' . $moduleName . ';find . -depth -iname "Skeleton*" -execdir mv {} ' . $moduleName . 'Controller.php \;');
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ' && find . -depth -iname "Skeleton*" -execdir mv {} ' . $moduleName . 'Controller.php \;');
 
             //Rename within files with upper case
-            shell_exec('cd ' . $path . '/module/' . $moduleName . ';grep -rl \'ZendSkeletonModule\' ./ | xargs sed -i \'s/ZendSkeletonModule/' . $moduleName . '/g\'');
-            shell_exec('cd ' . $path . '/module/' . $moduleName . ';grep -rl \'SkeletonController\' ./ | xargs sed -i \'s/SkeletonController/' . $moduleName . 'Controller/g\'');
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ' && grep -rl \'ZendSkeletonModule\' ./ | xargs sed -i \'s/ZendSkeletonModule/' . $moduleName . '/g\'');
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ' && grep -rl \'SkeletonController\' ./ | xargs sed -i \'s/SkeletonController/' . $moduleName . 'Controller/g\'');
 
             //Rename within files with lower case
-            shell_exec('cd ' . $path . '/module/' . $moduleName . ';grep -rl \'Literal\' ./ | xargs sed -i \'s/Literal/Segment/g\'');
-            shell_exec('cd ' . $path . '/module/' . $moduleName . ';grep -rl \'module-name-here\' ./ | xargs sed -i \'s/module-name-here/' . strtolower($moduleName) . '/g\'');
-            shell_exec('cd ' . $path . '/module/' . $moduleName . ';grep -rl \'module-specific-root\' ./ | xargs sed -i \'s/module-specific-root/' . strtolower($moduleName) . '\[\/\:action\]\[\/\]\[\:id\]/g\'');
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ' && grep -rl \'Literal\' ./ | xargs sed -i \'s/Literal/Segment/g\'');
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ' && grep -rl \'module-name-here\' ./ | xargs sed -i \'s/module-name-here/' . strtolower($moduleName) . '/g\'');
+            shell_exec('cd ' . $path . '/module/' . $moduleName . ' && grep -rl \'module-specific-root\' ./ | xargs sed -i \'s/module-specific-root/' . strtolower($moduleName) . '\[\/\:action\]\[\/\]\[\:id\]/g\'');
         } else {
             $err = true;
             $msg = '\'' . $path . '/module' . '\' does not exist';
@@ -258,22 +263,30 @@ EOT
         
         if (is_dir($path . '/module')) {
             shell_exec(
-                'cd vendor/ovimughal/zf3-module-creator;'
-                        . 'cp -R Oapirestmod ' . $path . '/module/'.$modulePrefix.$moduleName.';'
+                'cd vendor/ovimughal/zf3-module-creator && '
+                        . 'cp -R Oapirestmod ' . $path . '/module/'.$modulePrefix.$moduleName
             );
 
+			if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+				shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . '/src/Model && mv OapirestmodModel.php ' . $modulePrefix . $moduleName . 'Model.php');
+            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . '/src/Controller && mv RestmodController.php ' . ucfirst($moduleName) . 'Controller.php');
+            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . '/src/Handler && mv RestmodHandler.php ' . ucfirst($moduleName) . 'Handler.php');
+		} else {
+			
+		
+			
             //Rename all files
-            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ';find . -depth -iname "OapirestmodModel*" -execdir mv {} ' . $modulePrefix . $moduleName . 'Model.php \;');
-            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ';find . -depth -iname "RestmodController*" -execdir mv {} ' . ucfirst($moduleName) . 'Controller.php \;');
-            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ';find . -depth -iname "RestmodHandler*" -execdir mv {} ' . ucfirst($moduleName) . 'Handler.php \;');
-
+            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ' && find . -depth -iname "OapirestmodModel*" -execdir mv {} ' . $modulePrefix . $moduleName . 'Model.php \;');
+            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ' && find . -depth -iname "RestmodController*" -execdir mv {} ' . ucfirst($moduleName) . 'Controller.php \;');
+            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ' && find . -depth -iname "RestmodHandler*" -execdir mv {} ' . ucfirst($moduleName) . 'Handler.php \;');
+}
             //Rename within files with upper case
-            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ';grep -rl \'Oapirestmod\' ./ | xargs sed -i \'s/Oapirestmod/' . $modulePrefix . $moduleName . '/g\'');
-            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ';grep -rl \'oapirestmod\' ./ | xargs sed -i \'s/oapirestmod/' . strtolower($modulePrefix . $moduleName) . '/g\'');
+            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ' && grep -rl \'Oapirestmod\' ./ | xargs sed -i \'s/Oapirestmod/' . $modulePrefix . $moduleName . '/g\'');
+            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ' && grep -rl \'oapirestmod\' ./ | xargs sed -i \'s/oapirestmod/' . strtolower($modulePrefix . $moduleName) . '/g\'');
 
             //Rename within files with lower case        
-            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ';grep -rl \'Restmod\' ./ | xargs sed -i \'s/Restmod/' . ucfirst($moduleName) . '/g\'');
-            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ';grep -rl \'restmod\' ./ | xargs sed -i \'s/restmod/' . $moduleName . '/g\'');
+            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ' && grep -rl \'Restmod\' ./ | xargs sed -i \'s/Restmod/' . ucfirst($moduleName) . '/g\'');
+            shell_exec('cd ' . $path . '/module/' . $modulePrefix . $moduleName . ' && grep -rl \'restmod\' ./ | xargs sed -i \'s/restmod/' . $moduleName . '/g\'');
         } else {
             $err = true;
             $msg = '\'' . $path . '/module' . '\' does not exist';
