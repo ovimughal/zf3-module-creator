@@ -7,29 +7,34 @@
 
 namespace ZendSkeletonModule\Controller;
 
+use Oapirestmod\Handler\RestmodHandler;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\JsonModel;
 
 class SkeletonController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new \Zend\View\Model\JsonModel([
-            'method' => 'get',
-            'name'=>'index'
-        ]);
+        return new JsonModel([
+            'Hello' => 'Welcome to ORestApi....! :)',
+            'tagline' => 'Rest easily'
+            ]);
     }
     
     public function fooAction()
     {
-        return new \Zend\View\Model\JsonModel([
-            'method' => 'post',
-            'name'=>'foo'
-        ]);
+        $restmodHandler = new RestmodHandler();
+        $id = 1;
+        return new JsonModel($restmodHandler->fooHandle($id));
+//        return new \Zend\View\Model\JsonModel([
+//            'method' => 'post',
+//            'name'=>'foo'
+//        ]);
     }
     
     public function barAction()
     {
-        return new \Zend\View\Model\JsonModel([
+        return new JsonModel([
             'method' => 'put',
             'name'=>'bar'
         ]);
@@ -37,7 +42,7 @@ class SkeletonController extends AbstractActionController
     
     public function bazAction()
     {
-        return new \Zend\View\Model\JsonModel([
+        return new JsonModel([
             'method' => 'delete',
             'name'=>'baz'
         ]);

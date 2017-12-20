@@ -19,7 +19,7 @@ use Oapirestmod\Model\OapirestmodModel;
  */
 class RestmodHandler extends OhandlerBaseProvider
 {
-    public function getHandle($id)
+    public function fooHandle($id)
     {
         if(OvalidationSniffer::isNumeric($id)){
             $restmodModel = new OapirestmodModel();
