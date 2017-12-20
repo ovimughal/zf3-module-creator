@@ -118,7 +118,7 @@ EOT
             if ($moduleType == 'oRest') {
                 list($err, $msg) = $this->executeZf3RestShell($path, $modName, $msg);
             } else {
-                list($err, $msg) = $moduleType == 'zf3' ? $this->executeZf3Shell($path, $modName, $msg) : $this->executeOapiShell($path, $modName, $msg);
+                list($err, $msg) = $moduleType == 'oapi' ? $this->executeOapiShell($path, $modName, $msg) : $this->executeZf3Shell($path, $modName, $msg);
             }
             if (!$err) {
                 $this->loadModule($moduleConfigFile, $moduleName);
