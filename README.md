@@ -3,12 +3,12 @@ Create ZF3 module with one console command
 
 # Install
 1. Open terminal
-2. 
+2. Go to you root directory
 ```bash
 cd /path/of/your/application
+(e.g cd /var/www/ZF3-App)
 ```
-(e.g `cd /var/www/ZF3-App`)
-3. 
+3. Run below composer command
 ```bash
 composer require ovimughal/zf3-module-creator
 ```
@@ -33,9 +33,15 @@ eval(base64_decode('cmVxdWlyZSBfX0RJUl9fLicvdmVuZG9yL292aW11Z2hhbC96ZjMtbW9kdWxl
 php zf3-module.php create:module -m <Your-Module-Name>
 ```
    And your ZF3 Module is ready to use <br>
-   #Options
+   # Options
    1. `-m <Module-Name>` (Default is `SkeletonModule`)
-   2. `-t <Type>` (Type is either `zf3` or `oapi`, default is `zf3`, any other type other than `zf3` will consider `oapi`)
+   2. `-t <Type>` (Type is either `zf3` or `oapi` or `oRest`, default is `zf3`, any other type other than `oapi` or `oRest`  will consider `zf3`)
+   # Note
+   `zf3` is default ZF3 Module, since no mechanism is provided to auto generate this module as was available in ZF2 Eclipse PDT or Zend Studio, I kept option here.<br>
+   `oapi` is ZF3's `AbrstractRestfulController` based module where we can handle REST easily.<br>
+   `oRest` is awesome ZF3's `AbstractActionController` based module. An easey to use and your loved `Action` based approach.<br>
+   By having `oapiconfig` module installed you will get `Token` based mechanism, `AccessControlList(ACL)`, `Doctrine`, `ExceptionHandling`, `ApiValidation` & much more out of the box.
+   
 5. Test in your browser `http://hostname:port/yourapp/yourmodule` no configuration needed.
 6. Enjoy :)
 
