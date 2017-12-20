@@ -15,7 +15,7 @@ return [
                 'type'    => 'Literal',
                 'options' => [
                     // Change this to something specific to your module
-                    'route'    => '/module-specific-root',
+                    'route'    => '/module-specific-route',
                     'defaults' => [
                         'controller'    => Controller\SkeletonController::class,
                         'action'        => 'index',
