@@ -62,16 +62,18 @@ class ZF3ModuleCommand extends Command
         $this->setDescription('Creates ZF3 MVC Module.');
         $this->setDefinition([
             new InputOption('moduleName', 'm', InputOption::VALUE_OPTIONAL, 'Name of module to be created', $moduleName),
-            new InputOption('moduleType', 't', InputOption::VALUE_OPTIONAL, 'Type of module (use only when type is oapi)', 'zf3'),
+            new InputOption('moduleType', 't', InputOption::VALUE_OPTIONAL, 'Type of module (use only when type is oRest or oapi)', 'zf3'),
         ]);
 
         $this->setHelp(<<<EOT
 Create ZF3 Module or Oapi Module (if you are using Oapiconfig)
 
 options:
-    by not specifying -t default module type is zf3
-    by specifying -t as oRest, Awesome ZF3 Rest api module will be created using Zend's AbstractActionController(module for oapiconfig)
-    by specifying -t as oapi, Oapi Rest module will be created using Zend's AbstractRestfulController(module for oapiconfig)
+    - by not specifying -t default module type is zf3
+    - by specifying -t as oRest, Awesome ZF3 Rest api module will be created 
+        using Zend's AbstractActionController(module for oapiconfig)
+    - by specifying -t as oapi, Oapi Rest module will be created using 
+        Zend's AbstractRestfulController(module for oapiconfig)
 EOT
         );
     }

@@ -4,7 +4,7 @@ return [
     'oconfig_manager' => [
         'resources' => [
             'doctrineormmodule',
-            'oapimodule1'
+            'module_1'
         ]
     ]
 ];
