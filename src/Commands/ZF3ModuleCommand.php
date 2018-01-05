@@ -295,7 +295,7 @@ EOT
 
             //Rename all files
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                shell_exec('cd ' . $path . '/module/' . $moduleName . '/src/Controller && mv SkeltonController.php ' . $moduleName . 'Controller.php');
+                shell_exec('cd ' . $path . '/module/' . $moduleName . '/src/Controller && mv SkeletonController.php ' . $moduleName . 'Controller.php');
                 shell_exec('cd ' . $path . '/module/' . $moduleName . '/src/Handler && mv RestmodHandler.php ' . $moduleName . 'Handler.php');
                 shell_exec('cd ' . $path . '/module/' . $moduleName . '/src/Model && mv OapirestmodModel.php ' . $moduleName . 'Model.php');
             } else {
