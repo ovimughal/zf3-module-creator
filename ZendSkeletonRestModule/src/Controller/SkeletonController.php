@@ -50,12 +50,11 @@ class SkeletonController extends AbstractActionController
         ]);
     }
 
-    public function bazAction()
+    public function exceptionExampleAction()
     {
-        return new JsonModel([
-            'method' => 'delete',
-            'name' => 'baz'
-        ]);
+        //$fileName = $this->params('filename'); e.g param
+        $restmodHandler = new RestmodHandler();
+        return new \Zend\View\Model\JsonModel($restmodHandler->exceptionExampleHandle());
     }
 
 }

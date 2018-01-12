@@ -1,12 +1,20 @@
 <?php
-
+/*
+ * Replace names enclosed in <> like <customName1> with any name you want
+ * without <>. All folder paths like 'img/', 'img/customeName1',
+ * 'Application\Entity' are imaginary you can keep them or use your own.
+ * You can cahnge offset to any you want.
+ */
 return [
     'oconfig_manager' => [
         'settings' => [
             'enable_login' => false,
+            'app_development_env' => getenv('APPLICATION_ENV') == 'production' ? false : true,//or use true/false
+            '<any name or empty>_file_path' => 'img/',
+            '<customeName1>_file_path' => '',
             'image_server' => 'http://localhost:port/',
-            'customeName1_image_path' => 'img/customeName1/',
-            'customeName2_image_path' => 'img/customeName2/',
+            '<customeName1>_image_path' => 'img/customeName1/',
+            '<customeName2>_image_path' => 'img/customeName2/',
         ],
         'api' => [
             'api_key' => '<api-key>',//base64_encode(openssl_random_pseudo_bytes(64))

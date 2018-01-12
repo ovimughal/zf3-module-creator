@@ -63,7 +63,7 @@ return [
                             'verb' => 'delete',
                             'defaults' => [
                                 'controller' => Controller\SkeletonController::class,
-                                'action' => 'baz',
+                                'action' => 'exceptionExample',
                             ],
                         ],
                     ],

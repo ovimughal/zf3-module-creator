@@ -29,4 +29,11 @@ class RestmodHandler extends OhandlerBaseProvider
         
         return $this->getResult();
     }
+    
+    public function exceptionExampleHandle($param)
+    {
+        $exc = new \Exception('This is Exception Example. Enable or Disable Exception messages in oapiconfig.global');
+        $this->setData(OexceptionSniffer::exceptionScanner($exc));
+        return $this->getResult();
+    }
 }
