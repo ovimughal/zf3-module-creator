@@ -11,6 +11,7 @@ return [
             'enable_login' => false,
             'enable_db_acl' => false,
             'app_development_env' => getenv('APPLICATION_ENV') == 'production' ? false : true,//or use true/false
+            'base_path' => 'public',
             '<any name or empty>_file_path' => 'img/',
             '<customeName1>_file_path' => '',
             'image_server' => 'http://localhost:port/',
