@@ -11,12 +11,15 @@ return [
             'enable_login' => false,
             'enable_db_acl' => false,
             'app_development_env' => getenv('APPLICATION_ENV') == 'production' ? false : true,//or use true/false
-            'base_path' => 'public',
-            '<any name or empty>_file_path' => 'img/',
-            '<customeName1>_file_path' => '',
+            '<any-folder-name-1>' => 'public/img',
+            '<any-folder-name-2>' => 'public/attachments',            
+            '<any-key-name-1>' => '<any-key-value-1>',
             'image_server' => 'http://localhost:port/',
-            '<customeName1>_image_path' => 'img/customeName1/',
-            '<customeName2>_image_path' => 'img/customeName2/',
+            //path below will be used with image_server so public 
+            //is not needed here. This image should be accessible over url
+            //e.g http://localhost:port/img/customName1/test.jpg
+            '<any-folder-name-3>' => 'img/customeName1/', 
+            '<any-folder-name-4>' => 'img/customeName2/'
         ],
         'api' => [
             'api_key' => '<api-key>',//base64_encode(openssl_random_pseudo_bytes(64))
