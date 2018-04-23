@@ -11,15 +11,35 @@ return [
             'enable_login' => false,
             'enable_db_acl' => false,
             'app_development_env' => getenv('APPLICATION_ENV') == 'production' ? false : true,//or use true/false
+            // Start-Custom Keys
             '<any-folder-name-1>' => 'public/img',
             '<any-folder-name-2>' => 'public/attachments',            
             '<any-key-name-1>' => '<any-key-value-1>',
-            'image_server' => 'http://localhost:port/',
-            //path below will be used with image_server so public 
-            //is not needed here. This image should be accessible over url
-            //e.g http://localhost:port/img/customName1/test.jpg
+            // End-Custom Keys
+            
+            // Start-For Reporting Engine
+            // For Java Bridge you need Tomcat Server & deploy JavaBridge 
+            // And you also need to configure Jasper Reporting to Tomcat
+            'java_bridge' => 'http://localhost:8090/JavaBridge/java/Java.inc', // default
+            'dbms' => 'sqlsrv',//or mysql
+            'dbms_server' => '<ip-address>:<port>', //eg: 190.180.170.160:9000
+            'data_base_name' => '<dataBaseName>', //eg: MyTestDataBase
+            'data_base_user' => '<user>', // eg: root or sa
+            'data_base_password' => '<password>',
+            'reporting_templates' => 'public/reporting/templates', // default
+            'reporting_output' => 'public/reporting/output',// default
+            // End-For Reporting Engine
+            
+            // Start-For File Data Engine
+            'file_server' => 'http://localhost:8083/',
+            // path below will be used with file_server so public 
+            // is not needed here. This image/file should be accessible over url
+            // e.g http://localhost:port/img/customName1/test.jpg
+            // Start-custom keys for Image Data
             '<any-folder-name-3>' => 'img/customeName1/', 
-            '<any-folder-name-4>' => 'img/customeName2/'
+            '<any-folder-name-4>' => 'img/customeName2/',
+            // End-custom keys for Image Data
+            // End-For File Data Engine
         ],
         'api' => [
             'api_key' => '<api-key>',//base64_encode(openssl_random_pseudo_bytes(64))
