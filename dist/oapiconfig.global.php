@@ -26,8 +26,10 @@ return [
             'data_base_name' => '<dataBaseName>', //eg: MyTestDataBase
             'data_base_user' => '<user>', // eg: root or sa
             'data_base_password' => '<password>',
-            'reporting_templates' => 'public/reporting/templates', // default
-            'reporting_output' => 'public/reporting/output',// default
+            'reporting_templates' => '<folder-path>',//eg: public/reporting/templates
+            'reporting_output' => '<folder-path>',//eg: 'public/reporting/output'
+            'output_file_name' => '<file-name-without-ext>', // eg: output.pdf, output.txt, output.csv without extension
+            'output_file_download_route' => '<url-route>',// eg: http://localhost:9005/download,
             // End-For Reporting Engine
             
             // Start-For File Data Engine
@@ -43,6 +45,9 @@ return [
         ],
         'api' => [
             'api_key' => '<api-key>',//base64_encode(openssl_random_pseudo_bytes(64))
+            'hyperlink_api_key_security_one' => '12sbt', // Use any 5 alphanumeric
+            'hyperlink_api_key_security_two' => 'nJ65s', // use any 5 alphanumeric
+            'hyperlink_security_salt' => 'hjgtds', // use any alphanumeric upto n number
         ],
         'ojwt' => [
             'jwt_key' => '<token>', //base64_encode(openssl_random_pseudo_bytes(64))

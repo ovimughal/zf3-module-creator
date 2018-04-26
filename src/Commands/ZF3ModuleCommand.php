@@ -97,8 +97,15 @@ EOT
         $moduleType = $input->getOption('moduleType');
 
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            $replacementCount = 0;
             $pathWin = shell_exec("pwd | tr -d '\n\n\n'");
-            $path = str_replace('/c', 'C:', trim(preg_replace('/\s\s+/', ' ', $pathWin)));
+            $path = str_replace('/c', 'C:', trim(preg_replace('/\s\s+/', ' ', $pathWin)),$replacementCount);
+            if(!$replacementCount){
+                $path = str_replace('/d', 'D:', trim(preg_replace('/\s\s+/', ' ', $pathWin)),$replacementCount);
+            }
+            if(!$replacementCount){
+                $path = str_replace('/e', 'E:', trim(preg_replace('/\s\s+/', ' ', $pathWin)),$replacementCount);
+            }
         } else {
             $path = shell_exec("pwd | tr -d '\n'");
         }
