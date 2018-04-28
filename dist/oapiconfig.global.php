@@ -29,6 +29,7 @@ return [
             'reporting_templates' => '<folder-path>',//eg: public/reporting/templates
             'reporting_output' => '<folder-path>',//eg: 'public/reporting/output'
             'output_file_name' => '<file-name-without-ext>', // eg: output.pdf, output.txt, output.csv without extension
+            'reporting_file_download_route' => '<url-route>',// eg: http://localhost:9005/download,
             // End-For Reporting Engine
             
             // Start-For File Data Engine
