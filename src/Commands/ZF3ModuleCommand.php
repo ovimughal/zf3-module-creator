@@ -99,15 +99,23 @@ EOT
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $replacementCount = 0;
             $pathWin = shell_exec("pwd | tr -d '\n\n\n'");
-            $path = str_replace('/c', 'C:', trim(preg_replace('/\s\s+/', ' ', $pathWin)),$replacementCount);
-            if(!$replacementCount){
-                $path = str_replace('/d', 'D:', trim(preg_replace('/\s\s+/', ' ', $pathWin)),$replacementCount);
+            
+            // if wamp or xampp is installed in C: Drive
+            $path = str_replace('/c', 'C:', trim(preg_replace('/\s\s+/', ' ', $pathWin)), $replacementCount);
+
+            // if wamp or xampp is installed in D: Drive
+            if (!$replacementCount) {
+                $path = str_replace('/d', 'D:', trim(preg_replace('/\s\s+/', ' ', $pathWin)), $replacementCount);
             }
-            if(!$replacementCount){
-                $path = str_replace('/e', 'E:', trim(preg_replace('/\s\s+/', ' ', $pathWin)),$replacementCount);
+
+            // if wamp or xampp is installed in E: Drive
+            if (!$replacementCount) {
+                $path = str_replace('/e', 'E:', trim(preg_replace('/\s\s+/', ' ', $pathWin)), $replacementCount);
             }
-            if(!$replacementCount){
-                $path = str_replace('/f', 'F:', trim(preg_replace('/\s\s+/', ' ', $pathWin)),$replacementCount);
+
+            // if wamp or xampp is installed in F: Drive
+            if (!$replacementCount) {
+                $path = str_replace('/f', 'F:', trim(preg_replace('/\s\s+/', ' ', $pathWin)), $replacementCount);
             }
         } else {
             $path = shell_exec("pwd | tr -d '\n'");
@@ -164,7 +172,7 @@ EOT
     {
         $err = false;
 
-        $moduleName = $modName;//ucfirst(strtolower($modName)); //No Need, doing it in caller now
+        $moduleName = $modName; //ucfirst(strtolower($modName)); //No Need, doing it in caller now
 
         if (file_exists($composerJsonFile)) {
             $composerJsonData = json_decode(file_get_contents($composerJsonFile), true);
@@ -268,7 +276,7 @@ EOT
 
         return [$err, $msg];
     }
-    
+
     /**
      * Execute Zf3 Rest Shell
      * 
@@ -289,11 +297,11 @@ EOT
 
         $moduleName = ucfirst($modName);
         if (is_dir($path . '/module')) {
-            
-                shell_exec(
-                        'cd vendor/ovimughal/zf3-module-creator && '
-                        . 'cp -R ZendSkeletonRestModule ' . $path . '/module/' . $moduleName
-                );
+
+            shell_exec(
+                    'cd vendor/ovimughal/zf3-module-creator && '
+                    . 'cp -R ZendSkeletonRestModule ' . $path . '/module/' . $moduleName
+            );
 
             //Rename all directories with upper name
             shell_exec('cd ' . $path . '/module/' . $moduleName . ' && find . -depth -name ZendSkeletonRestModule -type d -execdir mv {} ' . $moduleName . ' \;');
@@ -400,7 +408,7 @@ EOT
      */
     protected function loadModule($moduleConfigFile, $modName)
     {
-        $moduleName = $modName;//ucfirst(strtolower($modName));No need, doing it in caller now
+        $moduleName = $modName; //ucfirst(strtolower($modName));No need, doing it in caller now
 
         $loadedModules = require ($moduleConfigFile);
         $loadedModules[] = $moduleName;
