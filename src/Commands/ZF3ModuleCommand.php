@@ -106,6 +106,9 @@ EOT
             if(!$replacementCount){
                 $path = str_replace('/e', 'E:', trim(preg_replace('/\s\s+/', ' ', $pathWin)),$replacementCount);
             }
+            if(!$replacementCount){
+                $path = str_replace('/f', 'F:', trim(preg_replace('/\s\s+/', ' ', $pathWin)),$replacementCount);
+            }
         } else {
             $path = shell_exec("pwd | tr -d '\n'");
         }
