@@ -9,8 +9,8 @@
 namespace ZendSkeletonModule\Controller;
 
 use Oapirestmod\Handler\RestmodHandler;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\JsonModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\JsonModel;
 
 class SkeletonController extends AbstractActionController
 {
@@ -28,7 +28,7 @@ class SkeletonController extends AbstractActionController
         $restmodHandler = new RestmodHandler();
         $id = 1;
         return new JsonModel($restmodHandler->fooHandle($id));
-//        return new \Zend\View\Model\JsonModel([
+//        return new \Laminas\View\Model\JsonModel([
 //            'method' => 'post',
 //            'name'=>'foo'
 //        ]);
@@ -54,7 +54,7 @@ class SkeletonController extends AbstractActionController
     {
         //$fileName = $this->params('filename'); e.g param
         $restmodHandler = new RestmodHandler();
-        return new \Zend\View\Model\JsonModel($restmodHandler->exceptionExampleHandle());
+        return new \Laminas\View\Model\JsonModel($restmodHandler->exceptionExampleHandle());
     }
 
 }

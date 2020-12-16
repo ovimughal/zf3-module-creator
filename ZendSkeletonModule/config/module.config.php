@@ -1,7 +1,7 @@
 <?php
 namespace ZendSkeletonModule;
 
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controllers' => [

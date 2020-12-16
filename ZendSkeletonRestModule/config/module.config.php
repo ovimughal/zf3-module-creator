@@ -2,8 +2,8 @@
 
 namespace ZendSkeletonModule;
 
-use Zend\Router\Http\Method;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\Router\Http\Method;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controllers' => [

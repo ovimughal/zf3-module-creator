@@ -7,7 +7,7 @@
 
 namespace ZendSkeletonModule\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class SkeletonController extends AbstractActionController
 {

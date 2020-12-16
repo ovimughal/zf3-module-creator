@@ -10,8 +10,8 @@
 namespace Oapirestmod\Controller;
 
 use Oapirestmod\Handler\RestmodHandler;
-use Zend\Mvc\Controller\AbstractRestfulController;
-use Zend\View\Model\JsonModel;
+use Laminas\Mvc\Controller\AbstractRestfulController;
+use Laminas\View\Model\JsonModel;
 
 class RestmodController extends AbstractRestfulController
 {
